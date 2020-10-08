@@ -4,7 +4,6 @@
 
 import json
 import os
-import boto3
 import requests
 import signal
 import sys
@@ -71,12 +70,7 @@ def process_events(ext_id, client):
         else:
             execute_custom_processing(event)
 
-client = None
-
 def main():
-    global client
-    if client is None:
-        client = boto3.client('ssm')
 
     # handle signals
     signal.signal(signal.SIGINT, handle_signal)
