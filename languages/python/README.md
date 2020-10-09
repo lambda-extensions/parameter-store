@@ -2,6 +2,14 @@
 
 This directory contains the source code for the python implementation of the [parameter store extension](/).
 
+## Quick Start
+
+To get started you can add the following arn as a layer to your lambda function:
+
+```bash
+
+```
+
 ## Development
 
 This project uses [poetry](https://python-poetry.org/).
