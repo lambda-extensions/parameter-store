@@ -4,6 +4,14 @@ This directory contains the source code for the python implementation of the [pa
 
 ## Development
 
+This project uses [poetry](https://python-poetry.org/).
+
+You can install the development dependencies with:
+
+```bash
+$ poetry install --dev
+```
+
 ### Build
 
 To build this layer, you can use the `bin/build` command.
