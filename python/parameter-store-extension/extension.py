@@ -20,7 +20,24 @@ LAMBDA_EXTENSION_NAME = Path(__file__).parent.name
 def execute_custom_processing(event, client):
     # perform custom per-event processing here
     print(f"[{LAMBDA_EXTENSION_NAME}] Received event: {json.dumps(event)}", flush=True)
-    os.environ['TEST_EXTENSION_VALUE'] = client.get_parameter(Name='test.extension')['Parameter']['Value']
+
+    parameter_keys = [
+        'test.extension'
+    ]
+
+    print(f'fetching parameters')
+
+    parameters = {}
+    for key in parameter_keys:
+        parameters[key] = client.get_parameter(Name='test.extension')['Parameter'].get('Value')
+    
+    if not os.path.exists('/tmp/parameter-store'):
+        print('created directory')
+        os.mkdir('/tmp/parameter-store')
+
+    with open('/tmp/parameter-store/secret.json', mode='w') as f:
+        print(f'writing credential file')
+        f.write(json.dumps(parameters))
 
 
 # boiler plate code
@@ -64,13 +81,13 @@ def process_events(ext_id, client):
             url=f"http://{os.environ['AWS_LAMBDA_RUNTIME_API']}/2020-01-01/extension/event/next",
             headers=headers,
             timeout=None
-        )
-        event = json.loads(response.text)
-        if event['eventType'] == 'SHUTDOWN':
+        ).json()
+
+        if response['eventType'] == 'SHUTDOWN':
             print(f"[{LAMBDA_EXTENSION_NAME}] Received SHUTDOWN event. Exiting.", flush=True)
             sys.exit(0)
         else:
-            execute_custom_processing(event, client)
+            execute_custom_processing(response, client)
 
 client = None
 
