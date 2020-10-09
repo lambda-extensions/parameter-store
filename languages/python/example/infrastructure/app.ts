@@ -4,12 +4,12 @@ import * as path from 'path';
 
 const app = new cdk.App();
 
-const env = {
+const extensions = {
     account: '863125196191', // lambda-extensions account id
     region: 'us-east-1'
 }
 
-const stack = new cdk.Stack(app, 'LambdaExtensionsParameterStoreExample', { env });
+const stack = new cdk.Stack(app, 'LambdaExtensionsParameterStoreExample');
 
 const version = stack.node.tryGetContext('EXTENSION_VERSION');
 
@@ -21,6 +21,6 @@ new lambda.Function(stack, 'Function', {
         MY_SECRET: 'ssm.my-secret'
     },
     layers: [
-        lambda.LayerVersion.fromLayerVersionArn(stack, 'ParameterStoreExtensionLayer', `arn:aws:lambda:${env.region}:${env.account}:layer:python-parameter-store-extension:${version}`)
+        lambda.LayerVersion.fromLayerVersionArn(stack, 'ParameterStoreExtensionLayer', `arn:aws:lambda:${extensions.region}:${extensions.account}:layer:python-parameter-store-extension:${version}`)
     ]
 });
