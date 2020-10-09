@@ -15,6 +15,16 @@ export class Ci extends cdk.Stack {
 
         new codebuild.Project(this, `PRs`, {
             projectName: `${appName}--pr`,
+            source: codebuild.Source.gitHub({
+                repo: 'parameter-store',
+                owner: 'lambda-extensions',
+                webhook: true,
+                webhookFilters: [
+                    codebuild.FilterGroup.inEventOf(
+                        codebuild.EventAction.PUSH
+                    ).andBranchIs('master')
+                ],
+            }),
             role: prRole,
             environment: {
                 buildImage: codebuild.LinuxBuildImage.AMAZON_LINUX_2_3

@@ -1,0 +1,6 @@
+{
+    "src": "src",
+    "compatibleRuntimes": [
+        "python3.8"
+    ]
+}
