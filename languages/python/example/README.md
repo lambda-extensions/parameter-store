@@ -1,6 +1,6 @@
 # Python Parameter Store Lambda Extension Example
 
-This directory contains an example [CDK Stack](https://github.com/aws/aws-cdk) with a lambda function that utilizes the [Parameter Store Lambda Extension]().
+This directory contains an example [CDK Stack](https://github.com/aws/aws-cdk) with a lambda function that utilizes the [Parameter Store Lambda Extension](https://github.com/lambda-extensions/parameter-store).
 
 ## Requirements
 
