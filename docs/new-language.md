@@ -14,7 +14,13 @@ src
         build.sh
     extensions
         parameter-store-extension
+    example
+        src
+            <YOUR LANGUAGE HANDLER FILES>
+        deploy.sh
+        README.md
     parameter-store-extension
         extension.<YOUR LANGUAGE EXTENSION>
-    .gitignore (your language-specific gitignore values)
+    .gitignore
+    README.md
 ```
