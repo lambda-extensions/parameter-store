@@ -6,7 +6,7 @@ authors = ["Joe Snell <joepsnell@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-lef = "^0.1.3"
+lef = "^0.1.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.1.1"
