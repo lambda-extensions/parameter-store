@@ -5,7 +5,7 @@ set -e
 [ -d build ] && rm -rf build
 [ -f extension.zip ] && rm extension.zip
 
-pipenv lock -r > requirements.txt
+poetry export -f requirements.txt --output requirements.txt
 
 chmod +x extensions/parameter-store-extension
 chmod +x parameter-store-extension/extension.py
