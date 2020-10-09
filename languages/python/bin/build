@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+[ -d build ] && rm -rf build
+[ -f extension.zip ] && rm extension.zip
+
+poetry export -f requirements.txt --output requirements.txt
+
+chmod +x src/extensions/parameter-store-extension
+chmod +x src/parameter-store-extension/extension.py
+
+mkdir -p build/
+
+cp -R src/extensions build/
+cp -R src/parameter-store-extension build/
+
+pip install -r requirements.txt -t build/parameter-store-extension
+
+cd build; zip -r ../extension.zip *
