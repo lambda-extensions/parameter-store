@@ -16,4 +16,4 @@ Supported Runtimes:
 
 ## Contributing
 
-To add a new language implementation, see the [New Langauge doc](/docs/new-language.md).
+To add a new language implementation, see the [New Language doc](/docs/new-language.md).
