@@ -1,11 +1,14 @@
 import json
-import os
+
+def load_secrets():
+    data = None
+    with open('/tmp/parameter-store/secret.json', mode='r') as f:
+        data = json.loads(f.read())
+    return data
 
 def handler(event, context):
-    print(os.path.exists('/tmp/parameter-store'))
-    with open('/tmp/parameter-store/secret.json', mode='r') as f:
-        print(f.read())
-
+    secrets = load_secrets()
+    print(secrets)
     return {
         'statusCode': 200,
         'body': json.dumps('Hello from Lambda!')
