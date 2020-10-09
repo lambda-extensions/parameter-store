@@ -8,3 +8,5 @@ phases:
     commands:
       - cd languages/python
       - bin/build
+      - cd .infrastructure
+      - npx cdk deploy "*--layers--*"

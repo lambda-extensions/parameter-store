@@ -2,19 +2,16 @@
 
 set -e
 
-[ -d build ] && rm -rf build
-[ -f extension.zip ] && rm extension.zip
+[ -d layer ] && rm -rf layer
 
 poetry export -f requirements.txt --output requirements.txt
 
 chmod +x src/extensions/parameter-store-extension
 chmod +x src/parameter-store-extension/extension.py
 
-mkdir -p build/
+mkdir -p layer/
 
-cp -R src/extensions build/
-cp -R src/parameter-store-extension build/
+cp -R src/extensions layer/
+cp -R src/parameter-store-extension layer/
 
-pip install -r requirements.txt -t build/parameter-store-extension
-
-cd build; zip -r ../extension.zip *
+pip install -r requirements.txt -t layer/parameter-store-extension

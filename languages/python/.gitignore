@@ -2,5 +2,5 @@
 *.pyc
 
 requirements.txt
-build
+layer
 extension.zip
